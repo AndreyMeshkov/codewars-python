@@ -21,6 +21,20 @@ def deep_count(a):
     for i in a:
         count += 1
         if isinstance(i, list):
-            return count + deep_count(i)
+            count += deep_count(i)
     return count
-# TODO-1 - fix
+
+# Best practice:
+#
+# def deep_count(a):
+#     result = 0
+#     for i in range(len(a)):
+#         if type(a[i]) is list:
+#             result += deep_count(a[i])
+#         result += 1
+#     return result
+#
+# Clever solution:
+#
+# def deep_count(a):
+#     return sum(1 + (deep_count(x) if isinstance(x, list) else 0) for x in a)
